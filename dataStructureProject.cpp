@@ -56,31 +56,22 @@ class stack
         
     }
 
-    // void display(){
-    //     if (isEmpty())
-    //     {
-    //         cout<<"Empty"<<endl;
-    //     }
-        
-    //     while (!isEmpty())
-    //     {
-    //         cout<<
-    //     }
-        
-    // }
-
 };
+
+void displayMainMenu(){
+    cout<<"1- implement stack using queue\n"<<endl;
+    cout<<"2- implement queue using stack\n"<<endl;
+    cout<<"3- reverse linked list items using stack\n"<<endl;
+    cout<<"4- level order of BST traverse using queue\n"<<endl;
+    cout<<"5- Exit\n"<<endl;
+}
 
 
 int main()
 
 {
 
-    cout<<"1- implement stack using queue\n"<<endl;
-    cout<<"2- implement queue using stack\n"<<endl;
-    cout<<"3- reverse linked list items using stack\n"<<endl;
-    cout<<"4- level order of BST traverse using queue\n"<<endl;
-    cout<<"5- Exit\n"<<endl;
+    displayMainMenu();
 
     int input = 0;
     cout<<"please enter your choice: ";
@@ -127,12 +118,17 @@ int main()
                 cout<<outputStack.pop();
                 cout<<" ";
             }
-        }
+            cout<<""<<endl;
+            cin.ignore();
+            cout<<"hit enter to return";
+            cin.get();
+            
+        }    
 
-
-        cin>>input;
-        
-        
+        displayMainMenu();
+        cout<<"please enter your choice: ";
+        cin>>input;    
+        cout<<""<<endl;
     }
 
 
