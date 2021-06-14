@@ -67,6 +67,54 @@ void displayMainMenu(){
 }
 
 
+
+class queue
+{
+    private: node *front,*rear;
+    // private: int *size;
+    public:
+    queue(){front=NULL;rear=NULL;}
+    void enqueue(int value);
+    int dequeue();
+    // int size();
+    // void display();
+};
+
+void queue:: enqueue (int value){
+    if (rear == NULL)
+    {
+        rear = new node;
+        rear->next = NULL;
+        rear->data = value;
+        front = rear;
+    }
+    else {
+        node * temp=new node;
+        temp->data = value;
+        temp->next = NULL;
+        rear->next = temp;
+        rear = temp;
+    }
+}
+
+int queue:: dequeue() //delete first in linked list
+    { 
+        int item;
+        node * temp;
+        temp = front;
+        if (front == NULL)
+        { cout<<"Underflow"<<endl; exit(0); }
+        else if (temp->next == NULL)
+        { item =front->data;
+        front = NULL; rear = NULL; }
+        else
+        {
+        item= temp->data;
+        temp = temp->next;
+        front = temp; }
+        return item;
+    }
+
 int main()
 
 {
@@ -79,13 +127,56 @@ int main()
 
     while (!(input >= 5))
     {
+        int numberOfItems;
         if (input == 1)
         {
+            //implement stack using queue
+            queue q1;
+            queue q2;
+            cout<<"please enter number of items you have: ";
+            cin>>numberOfItems;
+            int saveNumber = numberOfItems;
+            int index = 1;
+            //fill the first queue
+            while (index <= numberOfItems)
+            {
+                int item;
+                cout<<"please enter item number ";
+                cout<<index;
+                cout<<": ";
+                cin>>item;
+                q1.enqueue(item);
+                index++;
+            }
             
+            index = 1;
+            while (index <= numberOfItems)
+            {
+                if (numberOfItems == index)
+                {
+                    q2.enqueue(q1.dequeue());
+                    numberOfItems--;
+                    index = 1;
+                }else
+                {
+                    q1.enqueue(q1.dequeue());
+                    index ++;
+                }
+            }
+
+            index = 0;
+            while (index < saveNumber)
+            {
+                cout<<q2.dequeue()<<endl;
+                index++;
+            }
+            
+            
+
+
         }else if (input == 2)
         {
             stack s;
-            int numberOfItems;
             cout<<"please enter number of items you have: ";
             cin>>numberOfItems;
             int index = 1;
@@ -118,13 +209,14 @@ int main()
                 cout<<outputStack.pop();
                 cout<<" ";
             }
-            cout<<""<<endl;
-            cin.ignore();
-            cout<<"hit enter to return";
-            cin.get();
+            
             
         }    
 
+        cout<<""<<endl;
+        cin.ignore();
+        cout<<"hit enter to return";
+        cin.get();
         displayMainMenu();
         cout<<"please enter your choice: ";
         cin>>input;    
