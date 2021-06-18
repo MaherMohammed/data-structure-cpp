@@ -124,6 +124,7 @@ class linked_list
     linked_list()
     { start=NULL; last= NULL;}
     void insert_last(int value);
+    void delete_last();
     void display();
 }; 
 
